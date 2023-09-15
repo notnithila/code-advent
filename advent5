@@ -1,0 +1,101 @@
+with open("input5.txt", "r") as f:
+    file = f.read().split('\n\n')
+    stacks = file[0].split('\n')
+    instructions = file[1].split()
+
+
+    lists = []
+    for i in range(len(stacks)):
+        lists.append([])
+        for j in stacks[i]:
+            lists[i].append(j)
+    
+    lists.reverse()
+
+
+    realStacks = []
+    for i in range(len(lists[0])):
+        realStacks.append([]) 
+        for j in range(len(lists)):
+            realStacks[i].append(lists[j][i])
+
+
+    for stack in realStacks[:]:
+        if stack[0] == ' ':
+            realStacks.remove(stack)
+
+
+    for stack in realStacks:
+        while stack[-1] == " ":
+            stack.pop()
+
+
+    nums = []
+
+    for i in range(1, len(instructions), 2):
+        nums.append(int(instructions[i]))
+
+
+    print(nums)
+    print(realStacks)
+
+#    for i in range(0, len(nums), 3):
+#        count = nums[i]
+#        origStack = nums[i+1]
+#        newStack = nums[i+2]
+
+#        for j in range(count):
+#            item = realStacks[origStack-1].pop()
+#            realStacks[newStack-1].append(item)
+
+#    print(realStacks) 
+    
+    for i in range(0, len(nums), 3):
+        count = nums[i]
+        origStack = nums[i+1]
+        newStack = nums[i+2]
+
+        movingStack = []
+        for j in range(count):
+            item = realStacks[origStack-1].pop()
+            movingStack.append(item)
+        movingStack.reverse()
+        for k in movingStack:
+            realStacks[newStack-1].append(k)
+
+    print(realStacks)
+
+    answer = ''
+    
+    for stack in realStacks:
+        answer += stack[-1]
+    
+    print(answer)
+
+
+
+
+    
+
+
+ 
+
+
+
+
+
+
+    
+            
+
+
+ 
+
+    
+
+    
+
+
+    
+
+

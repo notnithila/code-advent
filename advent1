@@ -1,0 +1,23 @@
+
+with open("input.txt", "r") as f:
+    calories = []
+    for i in f:
+        calories.append(i.strip())
+
+    total_cals = []
+    sums = 0
+    for i in calories:
+        if i != "":
+            sums += int(i)
+        elif i == "":
+            total_cals.append(sums)
+            sums = 0
+
+    sorted_cals = sorted(total_cals)
+
+    print(sorted_cals[-1] + sorted_cals[-2] + sorted_cals[-3])
+
+        
+
+
+    

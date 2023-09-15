@@ -1,0 +1,92 @@
+# A - opp rock       1
+# B - opp paper      2
+# C - opp scissors   3
+
+# X - my rock        1
+# Y - my paper       2
+# Z - my scissors    3
+
+#lose = 0
+#draw = 3
+#win = 6
+
+#rock beats scissors
+#scissors beats paper
+#paper beats rock
+
+
+#if X -> if A - tie , if B - lose, if C - win
+#if Y -> if A - win, if B - tie, if C - lose
+#if Z -> if A - lose, if B - win, if C - tie
+
+with open("input2.txt", "r") as f:
+    games = []
+    for i in f:
+        games.append(i.strip().split())
+
+    score = 0
+    for game in games:
+        if game[1] == 'X':
+            if game[0] == 'A':
+                #tie
+                score += 4
+            elif game[0] == 'B':
+                #lose
+                score += 1
+            elif game[0] == 'C':
+                #win
+                score += 7
+        elif game[1] == 'Y':
+            if game[0] == 'A':
+                #win
+                score += 8
+            elif game[0] == 'B':
+                #tie
+                score += 5
+            elif game[0] == 'C':
+                #lose
+                score += 2
+        elif game[1] == 'Z':
+            if game[0] == 'A':
+                #lose
+                score += 3
+            elif game[0] == 'B':
+                #win
+                score += 9
+            elif game[0] == 'C':
+                #tie
+                score += 6
+
+    nscore = 0
+    for game in games:
+        if game[1] == 'X': #you need to lose
+            if game[0] == 'A': #play scissors
+                nscore += 3
+            elif game[0] == 'B': #play rock
+                nscore += 1
+            elif game[0] == 'C': #play paper
+                nscore += 2
+        elif game[1] == 'Y': #you need to draw
+            if game[0] == 'A': #play rock
+                nscore += 4
+            elif game[0] == 'B': #play paper
+                nscore += 5
+            elif game[0] == 'C': #play scissors
+                nscore += 6
+        elif game[1] == 'Z': #you need to win
+            if game[0] == 'A': #play paper
+                nscore += 8
+            elif game[0] == 'B': #play scissors
+                nscore += 9
+            elif game[0] == 'C': #play rock
+                nscore += 7
+
+
+    print(score)
+    print(nscore)
+
+
+
+
+
+

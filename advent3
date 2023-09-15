@@ -1,0 +1,59 @@
+def compareSacks(s1, s2, s3):
+    common = ''
+    done = 0
+    for i in range(len(s1)):
+        for j in range(len(s2)):
+            for k in range(len(s3)):
+                if s1[i] == s2[j] == s3[k]:
+                    common = s1[i]
+                    done = 1
+                    break
+            if done == 1:
+                break
+        if done == 1:
+            break
+    return common
+
+    
+with open("input3.txt", "r") as f:
+    sacks = []
+    for i in f:
+        sacks.append(i.strip())
+
+    print(sacks)
+
+    priority = 0
+
+# ascii for upper - 38
+# ascii for lower - 96 
+
+    for sack in sacks:
+        item = ''
+        length = len(sack)
+        done = 0
+        for i in range(0, length/2):
+            for j in range(length/2, length):
+                if sack[i] == sack[j]:
+                    item = sack[i]
+                    if sack[i].isupper():
+                        priority += (ord(sack[i]) - 38)
+                        done = 1
+                        break
+                    else:
+                        priority += (ord(sack[i]) - 96)
+                        done = 1
+                        break
+            if(done == 1):
+                break
+    
+    priorities = 0
+
+    for i in range(0, len(sacks), 3):
+        item = compareSacks(sacks[i], sacks[i+1], sacks[i+2])
+        if item.isupper():
+            priorities += (ord(item) - 38)
+        else:
+            priorities += (ord(item) - 96)
+    
+    print(priorities)
+
